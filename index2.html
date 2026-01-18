@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dream AI – Demo</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    input, button {
+      padding: 12px;
+      margin: 10px;
+      width: 90%;
+      max-width: 400px;
+    }
+    button {
+      background: #00ffcc;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .box {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Dream AI 🎬</h1>
+
+  <input type="text" placeholder="Describe your video..." />
+
+  <br>
+
+  <button onclick="generateVideo()">Generate Video</button>
+
+  <div id="status" class="box" style="display:none;"></div>
+
+  <div id="videoBox" class="box" style="display:none;">
+    <video width="100%" controls>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <script>
+    function generateVideo() {
+      const status = document.getElementById("status");
+      const videoBox = document.getElementById("videoBox");
+
+      status.style.display = "block";
+      status.innerText = "Generating video... ⏳";
+      videoBox.style.display = "none";
+
+      setTimeout(() => {
+        status.innerText = "Video ready 🎉";
+        videoBox.style.display = "block";
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
