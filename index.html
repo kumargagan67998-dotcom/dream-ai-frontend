@@ -25,6 +25,15 @@
     .box {
       margin-top: 20px;
     }
+    input {
+  display: block;
+  margin: 20px auto;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+}
   </style>
 </head>
 
@@ -33,9 +42,9 @@
   <h1>Dream AI 
 
   <br>
-
-  <button onclick="generateVideo()">Generate Video</button>
 <input id="promptInput" type="text" placeholder="Describe your video..." />
+    <br><br>
+    <button onclick="generateVideo()">Generate Video</button>
   <div id="status" class="box" style="display:none;"></div>
 
   <div id="videoBox" class="box" style="display:none;">
