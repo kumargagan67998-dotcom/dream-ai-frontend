@@ -30,37 +30,71 @@
 
 <body>
 
-  <h1>Dream AI 🎬</h1>
-
-  <input type="text" placeholder="Describe your video..." />
+  <h1>Dream AI 
 
   <br>
 
   <button onclick="generateVideo()">Generate Video</button>
-
+<input id="promptInput" type="text" placeholder="Describe your video..." />
   <div id="status" class="box" style="display:none;"></div>
 
   <div id="videoBox" class="box" style="display:none;">
-    <video width="100%" controls>
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    </video>
+   <video id="demoVideo" width="100%" controls></video> 
   </div>
+    
+<script>
+  const videoLibrary = {
+    car: [
+      "https://www.w3schools.com/html/mov_bbb.mp4"
+    ],
+    nature: [
+      "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    ],
+    animal: [
+      "https://www.w3schools.com/html/movie.mp4"
+    ]
+  };
 
-  <script>
-    function generateVideo() {
-      const status = document.getElementById("status");
-      const videoBox = document.getElementById("videoBox");
+  function generateVideo() {
+    const input = document.getElementById("promptInput").value.toLowerCase();
+    const status = document.getElementById("status");
+    const videoBox = document.getElementById("videoBox");
+    const video = document.getElementById("demoVideo");
 
-      status.style.display = "block";
-      status.innerText = "Generating video... ⏳";
-      videoBox.style.display = "none";
+    status.style.display = "block";
+    status.innerText = "Analyzing prompt... 🧠";
+    videoBox.style.display = "none";
 
-      setTimeout(() => {
-        status.innerText = "Video ready 🎉";
-        videoBox.style.display = "block";
-      }, 3000);
+    let selectedCategory = "nature"; // default
+
+    if (input.includes("car") || input.includes("bike")) {
+      selectedCategory = "car";
+    } else if (
+      input.includes("dog") ||
+      input.includes("cat") ||
+      input.includes("animal")
+    ) {
+      selectedCategory = "animal";
+    } else if (
+      input.includes("nature") ||
+      input.includes("forest") ||
+      input.includes("tree")
+    ) {
+      selectedCategory = "nature";
     }
-  </script>
 
+    setTimeout(() => {
+      const videos = videoLibrary[selectedCategory];
+      const randomVideo =
+        videos[Math.floor(Math.random() * videos.length)];
+
+      video.src = randomVideo;
+      video.load();
+
+      status.innerText = "Video generated 🎉 (" + selectedCategory + ")";
+      videoBox.style.display = "block";
+    }, 2000);
+  }
+</script>
 </body>
 </html>
